@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر سامفون الذكي - SAMFONI</title>
+    <title>منصة سامفون الذكية - SAMFONI</title>
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -20,10 +20,21 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; display: flex; flex-direction: column; min-height: 100vh; }
         
-        /* الهيدر وتظبيط اللوجو في القلب */
+        /* تصميم الهيدر الجديد مع اللوجو النصي عالي الجودة والدقة */
         header { text-align: center; margin-bottom: 20px; padding: 15px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .logo-img { width: 180px; height: auto; max-width: 100%; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1); }
-        header h1 { font-size: 22px; color: #fff; font-weight: 700; }
+        .logo-box { background: linear-gradient(135deg, #1e1e24 0%, #121214 100%); border: 2px solid var(--primary-color); padding: 10px 25px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); text-align: center; }
+        .logo-text-main { font-size: 32px; font-weight: 900; color: #ffffff; letter-spacing: 2px; font-family: 'Arial Black', sans-serif; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .logo-text-main span { color: var(--primary-color); }
+        .logo-signal { color: var(--primary-color); font-size: 24px; animation: pulse 2s infinite; display: inline-block; margin-right: 5px; }
+        .logo-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 4px; text-transform: uppercase; font-weight: bold; margin-top: -2px; border-top: 1px solid var(--border-color); padding-top: 2px; }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+
+        header h1 { font-size: 20px; color: #fff; font-weight: 700; margin-top: 5px; }
         header p { color: var(--text-muted); font-size: 13px; margin-top: 3px; }
         
         .main-layout { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; width: 100%; }
@@ -71,7 +82,10 @@
 <body>
 
     <header>
-        <img src="https://images2.imgbox.com/71/34/86GZJpE9_o.png" alt="SAMFONI Logo" class="logo-img">
+        <div class="logo-box">
+            <div class="logo-text-main">SAMF<span>O</span>NI<div class="logo-signal">📶</div></div>
+            <div class="logo-sub">Mobile Services</div>
+        </div>
         <h1>منصة سامفون الذكية 📱</h1>
         <p>قطع غيار صيانة الموبيلات والإكسسوارات للفنيين</p>
     </header>
@@ -106,7 +120,7 @@
                 </div>
             </div>
 
-            <div id="loading" class="loading">⏳ جاري سحب أحدث الأسعار... إذا علقت الشاشة اضغط 🔄</div>
+            <div id="loading" class="loading">⏳ جاري مزامنة الأسعار... اضغط 🔄 لتنشيط القائمة الفورية.</div>
             <div id="partsGrid" class="parts-grid"></div>
         </div>
 
@@ -148,14 +162,13 @@
         async function fetchParts() {
             const loadingDiv = document.getElementById('loading');
             loadingDiv.style.display = 'block';
-            loadingDiv.innerText = "⏳ جاري سحب الأسعار حالياً...";
             try {
                 const response = await fetch(`${API_URL}?nocache=${new Date().getTime()}`);
                 allProducts = await response.json();
                 loadingDiv.style.display = 'none';
                 filterAndRender();
             } catch (error) {
-                loadingDiv.innerHTML = "⚠️ معلق اتصال بالسيرفر المباشر. <br>اضغط على زر التحديث 🔄 لتنشيط المحرك وعرض العناصر.";
+                loadingDiv.innerHTML = "💡 اضغط على زر التحديث الأزرق 🔄 لتنشيط المحرك وسحب البضاعة فوراً.";
                 console.error(error);
                 filterAndRender(); 
             }
@@ -171,7 +184,7 @@
         function filterAndRender() {
             const grid = document.getElementById('partsGrid');
             if(!allProducts || allProducts.length === 0) {
-                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 30px; background: var(--card-bg); border-radius:12px; border:1px dashed var(--border-color)">📭 اضغط زر التحديث 🔄 لتنشيط السيرفر وعرض المنتجات.</div>`;
+                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 30px; background: var(--card-bg); border-radius:12px; border:1px dashed var(--border-color)">📭 اضغط زر التحديث 🔄 لتشغيل السيرفر وعرض المنتجات المخزنة.</div>`;
                 return;
             }
             
@@ -198,7 +211,7 @@
             const grid = document.getElementById('partsGrid');
             grid.innerHTML = '';
             if(products.length === 0) {
-                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 20px;">لا توجد عناصر متوفرة في هذا القسم.</div>`;
+                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 20px;">لا توجد عناصر متوفرة حالياً.</div>`;
                 return;
             }
             products.forEach((item) => {
