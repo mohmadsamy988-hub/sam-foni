@@ -15,22 +15,34 @@
             --text-muted: #a1a1aa;
             --border-color: #2d2d34;
             --success-color: #22c55e;
+            --danger-color: #ef4444;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; padding-bottom: 50px; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; display: flex; flex-direction: column; min-height: 100vh; }
+        
         header { text-align: center; margin-bottom: 20px; padding: 10px 0; }
         header h1 { font-size: 24px; color: var(--text-color); }
         header p { color: var(--text-muted); font-size: 14px; margin-top: 5px; }
+        
+        /* الحاوية الرئيسية لتقسيم الشاشة */
+        .main-layout { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+        .content-area { flex: 1; min-width: 300px; }
+        
+        /* أزرار الأقسام */
         .tabs-container { display: flex; gap: 10px; margin-bottom: 15px; }
         .tab-btn { flex: 1; padding: 12px; background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 16px; transition: all 0.2s; text-align: center; }
         .tab-btn.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+        
         .controls-container { background-color: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px; }
         .search-row { display: flex; gap: 10px; margin-bottom: 12px; }
         .search-bar { flex: 1; padding: 12px; background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-size: 16px; outline: none; }
         .refresh-btn { background-color: #27272a; color: var(--text-color); border: 1px solid var(--border-color); padding: 0 15px; border-radius: 8px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+        
         .filters { display: flex; gap: 10px; }
         .filters select { flex: 1; padding: 10px; background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-size: 14px; cursor: pointer; }
-        .parts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        
+        /* شبكة المنتجات */
+        .parts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; }
         .part-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; border-bottom: 3px solid var(--border-color); }
         .part-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .brand-badge { background-color: var(--primary-color); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
@@ -38,8 +50,27 @@
         .part-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; color: #fff; }
         .part-model { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
         .part-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 12px; }
-        .part-price { font-size: 20px; font-weight: 700; color: var(--accent-color); }
-        .order-btn { background-color: var(--success-color); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
+        .part-price { font-size: 18px; font-weight: 700; color: var(--accent-color); }
+        .add-to-cart-btn { background-color: var(--primary-color); color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; }
+        .add-to-cart-btn:hover { background-color: #1d4ed8; }
+        
+        /* تصميم السلة الجانبية */
+        .cart-sidebar { width: 320px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; position: sticky; top: 15px; min-width: 300px; }
+        .cart-title { font-size: 20px; font-weight: 700; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; display: flex; justify-content: space-between; }
+        .cart-items { max-height: 300px; overflow-y: auto; margin-bottom: 15px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 14px; }
+        .cart-item-info { flex: 1; padding-left: 10px; }
+        .cart-item-controls { display: flex; align-items: center; gap: 8px; }
+        .cart-qty-btn { background-color: #27272a; border: 1px solid var(--border-color); color: #fff; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .cart-item-price { color: var(--accent-color); font-weight: bold; margin-right: 5px; }
+        
+        .cart-totals { border-top: 1px solid var(--border-color); padding-top: 12px; margin-bottom: 15px; font-size: 15px; }
+        .totals-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .shipping-input { width: 70px; background: var(--bg-color); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; padding: 2px 5px; text-align: center; }
+        
+        .checkout-btn { background-color: var(--success-color); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 16px; text-align: center; display: block; text-decoration: none; }
+        .checkout-btn:hover { background-color: #16a34a; }
+        
         .loading { text-align: center; color: var(--text-muted); padding: 30px; font-size: 16px; font-weight: 600; }
     </style>
 </head>
@@ -47,55 +78,87 @@
 
     <header>
         <h1>متجر سامي الذكي لقطع الغيار والإكسسوار 📱</h1>
-        <p>كل ما يحتاجه فني الصيانة في مكان واحد</p>
+        <p>اجمع طلباتك وسجل أوردرك مباشرة عبر الواتساب</p>
     </header>
 
-    <div class="tabs-container">
-        <div class="tab-btn active" id="tabInternal" onclick="switchTab('internal')">⚙️ قطع غيار (داخلي)</div>
-        <div class="tab-btn" id="tabExternal" onclick="switchTab('external')">🎒 إكسسوارات (خارجي)</div>
-    </div>
+    <div class="main-layout">
+        
+        <div class="content-area">
+            <div class="tabs-container">
+                <div class="tab-btn active" id="tabInternal" onclick="switchTab('internal')">⚙️ قطع غيار (داخلي)</div>
+                <div class="tab-btn" id="tabExternal" onclick="switchTab('external')">🎒 إكسسوارات (خارجي)</div>
+            </div>
 
-    <div class="controls-container">
-        <div class="search-row">
-            <input type="text" id="searchInp" class="search-bar" placeholder="ابحث برقم الموديل أو اسم القطعة...">
-            <button class="refresh-btn" id="refreshBtn" title="تحديث البيانات">🔄</button>
-        </div>
-        <div class="filters">
-            <select id="brandFilter">
-                <option value="">كل الشركات</option>
-                <option value="Apple">Apple</option>
-                <option value="Samsung">Samsung</option>
-                <option value="Xiaomi">Xiaomi</option>
-            </select>
-            <select id="qualityFilter">
-                <option value="">كل الجودات</option>
-                <option value="أصلي خلع">أصلي خلع</option>
-                <option value="أصلي توكيل">أصلي توكيل</option>
-                <option value="هاي كوبي">هاي كوبي</option>
-            </select>
-        </div>
-    </div>
+            <div class="controls-container">
+                <div class="search-row">
+                    <input type="text" id="searchInp" class="search-bar" placeholder="ابحث برقم الموديل أو اسم القطعة...">
+                    <button class="refresh-btn" id="refreshBtn" title="تحديث البيانات">🔄</button>
+                </div>
+                <div class="filters">
+                    <select id="brandFilter">
+                        <option value="">كل الشركات</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Xiaomi">Xiaomi</option>
+                    </select>
+                    <select id="qualityFilter">
+                        <option value="">كل الجودات</option>
+                        <option value="أصلي خلع">أصلي خلع</option>
+                        <option value="أصلي توكيل">أصلي توكيل</option>
+                        <option value="هاي كوبي">هاي كوبي</option>
+                    </select>
+                </div>
+            </div>
 
-    <div id="loading" class="loading">⏳ جاري تحميل الأسعار... إذا طوّلت الشاشة، اضغط زر التحديث 🔄 فوق.</div>
-    <div id="partsGrid" class="parts-grid"></div>
+            <div id="loading" class="loading">⏳ جاري سحب أحدث الأسعار...</div>
+            <div id="partsGrid" class="parts-grid"></div>
+        </div>
+
+        <div class="cart-sidebar">
+            <div class="cart-title">
+                <span>🛒 سلة الطلبات</span>
+                <span id="cartCount" style="font-size:14px; background:var(--primary-color); padding:2px 8px; border-radius:20px;">0</span>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p style="text-align:center; color:var(--text-muted); padding:20px;">السلة فارغة حالياً</p>
+            </div>
+            <div class="cart-totals">
+                <div class="totals-row">
+                    <span>إجمالي المنتجات:</span>
+                    <span id="itemsTotal">0 ج.م</span>
+                </div>
+                <div class="totals-row">
+                    <span>مصاريف الشحن:</span>
+                    <input type="number" id="shippingCost" class="shipping-input" value="50" oninput="updateCartUI()">
+                </div>
+                <div class="totals-row" style="font-weight:700; color:var(--accent-color); font-size:18px; border-top:1px dashed var(--border-color); padding-top:8px;">
+                    <span>الحساب الإجمالي:</span>
+                    <span id="finalTotal">0 ج.م</span>
+                </div>
+            </div>
+            <button class="checkout-btn" onclick="sendOrderToWhatsApp()">🟢 تأكيد الطلب وإرسال واتساب</button>
+        </div>
+
+    </div>
 
     <script>
         const API_URL = "https://script.google.com/macros/s/AKfycbwoSVwewTUTT14T7Lc8qSRKuU7sDwrNceUCxwkdnURd2Ow2Tze6KVEAOwNT5S7bKwM-aA/exec"; 
         const phone = "201012364554"; 
+        
         let allProducts = [];
+        let cart = []; // مصفوفة لتخزين عناصر السلة
         let currentTab = 'internal';
 
         async function fetchParts() {
             const loadingDiv = document.getElementById('loading');
             loadingDiv.style.display = 'block';
-            loadingDiv.innerText = "⏳ جاري الاتصال بالمخزن...";
             try {
                 const response = await fetch(`${API_URL}?nocache=${new Date().getTime()}`);
                 allProducts = await response.json();
                 loadingDiv.style.display = 'none';
                 filterAndRender();
             } catch (error) {
-                loadingDiv.innerText = "⚠️ معلق اتصال. اضغط زر 🔄 لتنشيط السيرفر وعرض المنتجات.";
+                loadingDiv.innerText = "⚠️ معلق اتصال. اضغط 🔄 لتنشيط السيرفر.";
                 console.error(error);
             }
         }
@@ -108,19 +171,16 @@
         }
 
         function filterAndRender() {
-            if(!allProducts || allProducts.length === 0) {
-                document.getElementById('partsGrid').innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 40px; background: var(--card-bg); border-radius:12px;">📭 اضغط زر التحديث 🔄 لجلب المنتجات من الشيت.</div>`;
-                return;
-            }
+            if(!allProducts || allProducts.length === 0) return;
             const searchVal = document.getElementById('searchInp').value.toLowerCase();
             const brandVal = document.getElementById('brandFilter').value;
             const qualityVal = document.getElementById('qualityFilter').value;
 
             const filtered = allProducts.filter(item => {
                 const name = String(item.Part_Name || '').toLowerCase();
+                const quality = String(item.Quality || '').toLowerCase();
                 const model = String(item.Model || '').toLowerCase();
                 const brand = String(item.Brand || '');
-                const quality = String(item.Quality || '');
 
                 const isExternalItem = name.includes('جراب') || name.includes('اسكرين') || name.includes('شاحن') || quality.includes('جراب') || quality.includes('اسكرين');
                 if (currentTab === 'internal' && isExternalItem) return false;
@@ -135,15 +195,121 @@
             const grid = document.getElementById('partsGrid');
             grid.innerHTML = '';
             if(products.length === 0) {
-                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 20px;">لا توجد عناصر في هذا القسم.</div>`;
+                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 20px;">لا توجد عناصر متوفرة.</div>`;
                 return;
             }
-            products.forEach(item => {
+            products.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'part-card';
-                card.innerHTML = `<div><div class="part-header"><span class="brand-badge">${item.Brand || 'عام'}</span><span class="quality-badge">${item.Quality || 'ممتاز'}</span></div><div class="part-title">${item.Part_Name || ''}</div><div class="part-model">${item.Model || ''}</div></div><div class="part-footer"><div class="part-price">${item.Price_Total || 0} ج.م</div><button class="order-btn" onclick="orderPart('${item.Part_Name}', '${item.Model}', '${item.Price_Total}')">🟢 اطلب الآن</button></div>`;
+                card.innerHTML = `
+                    <div>
+                        <div class="part-header">
+                            <span class="brand-badge">${item.Brand || 'عام'}</span>
+                            <span class="quality-badge">${item.Quality || 'ممتاز'}</span>
+                        </div>
+                        <div class="part-title">${item.Part_Name || ''}</div>
+                        <div class="part-model">${item.Model || ''}</div>
+                    </div>
+                    <div class="part-footer">
+                        <div class="part-price">${item.Price_Total || 0} ج.م</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('${item.Part_Name}', '${item.Model}', ${item.Price_Total})">➕ للسلة</button>
+                    </div>
+                `;
                 grid.appendChild(card);
             });
+        }
+
+        // إدارات السلة
+        function addToCart(name, model, price) {
+            const existingItem = cart.find(item => item.name === name && item.model === model);
+            if(existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, model, price, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        function changeQty(index, amount) {
+            cart[index].qty += amount;
+            if(cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const itemsTotal = document.getElementById('itemsTotal');
+            const finalTotal = document.getElementById('finalTotal');
+            const shippingCost = Number(document.getElementById('shippingCost').value) || 0;
+
+            cartItemsDiv.innerHTML = '';
+            
+            if(cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:20px;">السلة فارغة حالياً</p>';
+                cartCount.innerText = 0;
+                itemsTotal.innerText = '0 ج.م';
+                finalTotal.innerText = '0 ج.م';
+                return;
+            }
+
+            let totalProductsPrice = 0;
+            let totalCount = 0;
+
+            cart.forEach((item, index) => {
+                totalProductsPrice += (item.price * item.qty);
+                totalCount += item.qty;
+
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+                row.innerHTML = `
+                    <div class="cart-item-info">
+                        <div><b>${item.name}</b></div>
+                        <div style="font-size:12px; color:var(--text-muted)">${item.model}</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="cart-qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button class="cart-qty-btn" onclick="changeQty(${index(), 1}">+</button>
+                        <span class="cart-item-price">${item.price * item.qty} ج.م</span>
+                    </div>
+                `;
+                cartItemsDiv.appendChild(row);
+            });
+
+            cartCount.innerText = totalCount;
+            itemsTotal.innerText = `${totalProductsPrice} ج.م`;
+            finalTotal.innerText = `${totalProductsPrice + shippingCost} ج.م`;
+        }
+
+        function sendOrderToWhatsApp() {
+            if(cart.length === 0) {
+                alert('سلتك فارغة! أضف بضاعة أولاً قبل إرسال الطلب.');
+                return;
+            }
+
+            let message = `*طلب شراء جديد من المتجر الذكي 🛒*\n`;
+            message += `-----------------------------------\n`;
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}- *القطعة:* ${item.name}\n`;
+                message += `   *الموديل:* ${item.model}\n`;
+                message += `   *الكمية:* ${item.qty} × *السعر:* ${item.price} ج.م\n`;
+                message += `-----------------------------------\n`;
+            });
+
+            const shippingCost = Number(document.getElementById('shippingCost').value) || 0;
+            const itemsTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            message += `*إجمالي البضاعة:* ${itemsTotal} ج.م\n`;
+            message += `*مصاريف الشحن:* ${shippingCost} ج.م\n`;
+            message += `👉 *الحساب النهائي المطلوب:* ${itemsTotal + shippingCost} ج.م\n\n`;
+            message += `_برجاء مراجعة الطلب وتأكيد الشحن يا هندسة!_`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
         }
 
         document.getElementById('searchInp').addEventListener('input', filterAndRender);
