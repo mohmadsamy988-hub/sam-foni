@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة سامفون الذكية - SAMFONI</title>
+    <title>SamTech | متجر سام تيك للإكسسوارات وقطع الغيار</title>
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2=family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* دمج الألوان الفخمة والـ Tech-Dark المودرن */
+        /* ستايل المود المظلم والفخم (Tech-Dark) بالأخضر الفوسفوري المميز لـ SamTech */
         :root {
             --bg-color: #0b0c10;
             --card-bg: #1f2833;
-            --accent-color: #deff9a; /* الأخضر الفوسفوري المميز للثيم الفخم */
-            --primary-color: #2563eb; /* الأزرق الكهربي للبراند */
+            --accent-color: #deff9a; /* الأخضر الفوسفوري المميز لـ SamTech */
             --text-color: #c5c6c7;
             --white: #ffffff;
             --border-color: #2c3540;
-            --danger-color: #ef4444;
             --success-color: #22c55e;
         }
 
@@ -40,81 +38,64 @@
             min-height: 100vh;
         }
 
-        /* الهيدر الاحترافي مع اللوجو المدمج في النص */
+        /* الهيدر واللوجو الفخم */
         header {
             background-color: #151922;
             padding: 15px 5%;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
             border-bottom: 2px solid var(--accent-color);
-            border-radius: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 12px 12px;
             margin-bottom: 25px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        /* لوجو SAMFONI الفخم عالي الدقة */
-        .logo-box {
-            background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
-            border: 2px solid var(--accent-color);
-            padding: 8px 25px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            box-shadow: 0 0 15px rgba(222, 255, 154, 0.2);
-            text-align: center;
+        /* اللوجو الرسمي لـ SamTech المدمج بدقة */
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
         }
-        
-        .logo-text-main {
-            font-size: 30px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 2px;
-            font-family: 'Arial Black', sans-serif;
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-buttons {
             display: flex;
+            gap: 15px;
             align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        
-        .logo-text-main span {
-            color: var(--accent-color);
-        }
-        
-        .logo-signal {
-            color: var(--accent-color);
-            font-size: 22px;
-            animation: pulse 2s infinite;
-            display: inline-block;
-        }
-        
-        .logo-sub {
-            font-size: 11px;
-            color: var(--text-color);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-top: -2px;
-            border-top: 1px solid #333;
-            padding-top: 2px;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.6; }
         }
 
-        header h1 { font-size: 18px; color: #fff; font-weight: 700; margin-top: 5px; }
-        header p { color: var(--text-color); font-size: 13px; opacity: 0.8; }
+        .btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
 
-        /* حاوية التخطيط الرئيسي */
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* تخطيط المحتوى الرئيسي */
         .main-layout {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
             align-items: flex-start;
             width: 100%;
+            padding: 0 3%;
         }
 
         .content-area {
@@ -122,16 +103,16 @@
             min-width: 300px;
         }
 
-        /* أزرار الأقسام الذكية */
+        /* أزرار تبديل الأقسام */
         .tabs-container {
             display: flex;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .tab-btn {
             flex: 1;
-            padding: 14px;
+            padding: 12px;
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-color);
@@ -149,7 +130,7 @@
             border-color: var(--accent-color);
         }
 
-        /* لوحة التحكم والبحث والفلاتر */
+        /* لوحة الفلاتر والبحث */
         .controls-container {
             background-color: var(--card-bg);
             padding: 15px;
@@ -173,7 +154,6 @@
             color: #fff;
             font-size: 15px;
             outline: none;
-            transition: 0.3s;
         }
 
         .search-bar:focus {
@@ -187,16 +167,7 @@
             padding: 0 18px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-
-        .refresh-btn:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
+            font-size: 15px;
         }
 
         .filters {
@@ -216,16 +187,16 @@
             cursor: pointer;
         }
 
-        /* شبكة عرض كروت بضاعة الصيانة */
+        /* شبكة الكروت للمنتجات */
         .parts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
         }
 
         .part-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             padding: 18px;
             display: flex;
@@ -250,7 +221,7 @@
             background-color: #151922;
             color: var(--accent-color);
             border: 1px solid var(--accent-color);
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: 4px;
             font-size: 11px;
             font-weight: bold;
@@ -293,24 +264,7 @@
             color: var(--accent-color);
         }
 
-        .btn-add-cart {
-            background-color: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .btn-add-cart:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        /* السلة الجانبية المتطورة والثابتة */
+        /* السلة الجانبية الفخمة */
         .cart-sidebar {
             width: 320px;
             background-color: var(--card-bg);
@@ -336,7 +290,7 @@
         }
 
         .cart-items {
-            max-height: 280px;
+            max-height: 250px;
             overflow-y: auto;
             margin-bottom: 15px;
         }
@@ -345,14 +299,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px dashed rgba(255,255,255,0.05);
             font-size: 13px;
-        }
-
-        .cart-item-info {
-            flex: 1;
-            padding-left: 10px;
         }
 
         .cart-item-controls {
@@ -369,12 +318,6 @@
             height: 24px;
             border-radius: 4px;
             cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .cart-qty-btn:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
         }
 
         .cart-item-price {
@@ -387,13 +330,13 @@
             border-top: 1px solid var(--border-color);
             padding-top: 12px;
             margin-bottom: 15px;
-            font-size: 14px;
         }
 
         .totals-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 8px;
+            font-size: 14px;
         }
 
         .shipping-input {
@@ -404,11 +347,6 @@
             border-radius: 4px;
             padding: 2px 5px;
             text-align: center;
-            outline: none;
-        }
-
-        .shipping-input:focus {
-            border-color: var(--accent-color);
         }
 
         .checkout-btn {
@@ -429,7 +367,6 @@
         }
 
         .checkout-btn:hover {
-            background-color: #16a34a;
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
         }
 
@@ -437,19 +374,17 @@
             text-align: center;
             color: var(--text-color);
             padding: 20px;
-            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-box">
-            <div class="logo-text-main">SAMF<span>O</span>NI <div class="logo-signal">📶</div></div>
-            <div class="logo-sub">Mobile Services</div>
+        <div class="logo">SAM<span>TECH</span></div>
+        
+        <div class="nav-buttons">
+            <p style="color: var(--white); font-size: 13px; font-weight: 600;">منصة قطع الغيار والإكسسوارات الفخمة 📱</p>
         </div>
-        <h1>منصة سامفون الذكية الفخمة 📱</h1>
-        <p>البوابة الأسرع لفنيين الصيانة لجلب البضاعة والإكسسوارات</p>
     </header>
 
     <div class="main-layout">
@@ -462,19 +397,19 @@
 
             <div class="controls-container">
                 <div class="search-row">
-                    <input type="text" id="searchInp" class="search-bar" placeholder="اكتب الموديل أو اسم القطعة للصيانة فورا...">
+                    <input type="text" id="searchInp" class="search-bar" placeholder="ابحث برقم الموديل أو اسم قطعة الصيانة...">
                     <button class="refresh-btn" id="refreshBtn" title="مزامنة الأسعار لايف"><i class="fa-solid fa-rotate"></i> تحديث</button>
                 </div>
                 <div class="filters">
                     <select id="brandFilter">
-                        <option value="">كل براندات المحمول</option>
+                        <option value="">كل الشركات</option>
                         <option value="Apple">Apple</option>
                         <option value="Samsung">Samsung</option>
                         <option value="Xiaomi">Xiaomi</option>
                         <option value="Oppo">Oppo</option>
                     </select>
                     <select id="qualityFilter">
-                        <option value="">كل مستويات الجودة</option>
+                        <option value="">كل الجودات</option>
                         <option value="أصلي خلع">أصلي خلع</option>
                         <option value="أصلي توكيل">أصلي توكيل</option>
                         <option value="هاي كوبي">هاي كوبي</option>
@@ -482,39 +417,39 @@
                 </div>
             </div>
 
-            <div id="loading" class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري مزامنة أحدث أسعار البضاعة لايف من السيرفر...</div>
+            <div id="loading" class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري مزامنة البضاعة والأسعار لايف...</div>
             <div id="partsGrid" class="parts-grid"></div>
         </div>
 
         <div class="cart-sidebar">
             <div class="cart-title">
                 <span><i class="fa-solid fa-basket-shopping"></i> سلة طلباتك</span>
-                <span id="cartCount" style="font-size:12px; background:var(--accent-color); color: var(--bg-color); padding:2px 8px; border-radius:20px; font-weight:700;">0</span>
+                <span id="cartCount" style="font-size:12px; background:var(--accent-color); color:#000; padding:2px 8px; border-radius:20px; font-weight: 700;">0</span>
             </div>
             <div class="cart-items" id="cartItems">
-                <p style="text-align:center; color:var(--text-color); opacity:0.6; padding:20px;">السلة فارغة حالياً</p>
+                <p style="text-align:center; color:var(--text-color); opacity:0.5; padding:20px;">السلة فارغة</p>
             </div>
             <div class="cart-totals">
                 <div class="totals-row">
-                    <span>إجمالي البضاعة الخالصة:</span>
+                    <span>إجمالي قطع الغيار:</span>
                     <span id="itemsTotal">0 ج.م</span>
                 </div>
                 <div class="totals-row">
-                    <span>حساب الشحن للورشة:</span>
+                    <span>مصاريف الشحن:</span>
                     <input type="number" id="shippingCost" class="shipping-input" value="50" oninput="updateCartUI()">
                 </div>
-                <div class="totals-row" style="font-weight:700; color:var(--accent-color); font-size:17px; border-top:1px dashed rgba(255,255,255,0.1); padding-top:10px;">
-                    <span>الحساب الإجمالي الكلي:</span>
+                <div class="totals-row" style="font-weight:700; color:var(--accent-color); font-size:16px; border-top:1px dashed rgba(255,255,255,0.1); padding-top:8px;">
+                    <span>الحساب الكلي:</span>
                     <span id="finalTotal">0 ج.م</span>
                 </div>
             </div>
-            <button class="checkout-btn" onclick="sendOrderToWhatsApp()"><i class="fa-brands fa-whatsapp"></i> إرسال الأوردر للواتساب فورا</button>
+            <button class="checkout-btn" onclick="sendOrderToWhatsApp()"><i class="fa-brands fa-whatsapp"></i> تأكيد وإرسال واتساب</button>
         </div>
 
     </div>
 
     <script>
-        // دمج رابط الـ API الفعلي والحقيقي لجدول بياناتك لمنع التوقف
+        // ربط السيرفر والجدول الخاص بك لمنع أي توقف
         const API_URL = "https://script.google.com/macros/s/AKfycbwoSVwewTUTT14T7Lc8qSRKuU7sDwrNceUCxwkdnURd2Ow2Tze6KVEAOwNT5S7bKwM-aA/exec"; 
         const phone = "201012364554"; 
         
@@ -531,7 +466,7 @@
                 loadingDiv.style.display = 'none';
                 filterAndRender();
             } catch (error) {
-                loadingDiv.innerHTML = "💡 السيرفر في وضع الاستعداد الآن. <br>اضغط زر التحديث الأخضر 🔄 لتنشيط القائمة الفورية.";
+                loadingDiv.innerHTML = "💡 اضغط على زر التحديث 🔄 لتنشيط ومزامنة المنتجات فوراً.";
                 console.error(error);
                 filterAndRender(); 
             }
@@ -547,7 +482,7 @@
         function filterAndRender() {
             const grid = document.getElementById('partsGrid');
             if(!allProducts || allProducts.length === 0) {
-                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-color); opacity:0.7; padding: 30px; background: var(--card-bg); border-radius:12px; border:1px dashed var(--border-color)"><i class="fa-solid fa-circle-exclamation"></i> يرجى الضغط على زر التحديث 🔄 بالأعلى لتحميل قائمة الأسعار الفورية.</div>`;
+                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-color); opacity:0.6; padding: 30px; background: var(--card-bg); border-radius:8px; border:1px dashed var(--border-color)">📭 اضغط زر التحديث 🔄 لتشغيل المحرك وعرض المنتجات المخزنة.</div>`;
                 return;
             }
             
@@ -574,7 +509,7 @@
             const grid = document.getElementById('partsGrid');
             grid.innerHTML = '';
             if(products.length === 0) {
-                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-color); opacity:0.6; padding: 20px;">لا توجد عناصر متوفرة تطابق خيارات البحث حالياً.</div>`;
+                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-color); padding: 20px;">لا توجد عناصر متوفرة حالياً.</div>`;
                 return;
             }
             products.forEach((item) => {
@@ -591,7 +526,7 @@
                     </div>
                     <div class="part-footer">
                         <div class="part-price">${item.Price_Total || 0} ج.م</div>
-                        <button class="btn-add-cart" onclick="addToCart('${item.Part_Name}', '${item.Model}', ${item.Price_Total})"><i class="fa-solid fa-cart-plus"></i> للسلة</button>
+                        <button class="btn" onclick="addToCart('${item.Part_Name}', '${item.Model}', ${item.Price_Total})">➕ للسلة</button>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -626,7 +561,7 @@
             cartItemsDiv.innerHTML = '';
             
             if(cart.length === 0) {
-                cartItemsDiv.innerHTML = '<p style="text-align:center; color:var(--text-color); opacity:0.6; padding:20px;">السلة فارغة حالياً</p>';
+                cartItemsDiv.innerHTML = '<p style="text-align:center; color:var(--text-color); opacity:0.5; padding:20px;">السلة فارغة</p>';
                 cartCount.innerText = 0;
                 itemsTotal.innerText = '0 ج.م';
                 finalTotal.innerText = '0 ج.م';
@@ -644,12 +579,12 @@
                 row.className = 'cart-item';
                 row.innerHTML = `
                     <div class="cart-item-info">
-                        <div style="color: #fff; font-weight:600;">${item.name}</div>
-                        <div style="font-size:11px; color:var(--text-color); opacity:0.6;">${item.model}</div>
+                        <div style="color:#fff; font-weight:600;">${item.name}</div>
+                        <div style="font-size:11px; opacity:0.6;">${item.model}</div>
                     </div>
                     <div class="cart-item-controls">
                         <button class="cart-qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                        <span style="font-weight: 700; color: #fff; min-width:15px; text-align:center;">${item.qty}</span>
+                        <span style="font-weight: bold; min-width:15px; text-align:center;">${item.qty}</span>
                         <button class="cart-qty-btn" onclick="changeQty(${index}, 1)">+</button>
                         <span class="cart-item-price" style="margin-right:8px;">${item.price * item.qty} ج.م</span>
                     </div>
@@ -664,11 +599,11 @@
 
         function sendOrderToWhatsApp() {
             if(cart.length === 0) {
-                alert('سلتك فارغة تماماً! تصفح البضاعة وأضف قطعاً أولاً.');
+                alert('سلتك فارغة! أضف بضاعة أولاً قبل إرسال الطلب.');
                 return;
             }
 
-            let message = `*طلب شراء جديد من منصة SAMFONI الفخمة 🛒*\n`;
+            let message = `*طلب شراء جديد من متجر SamTech 🛒*\n`;
             message += `-----------------------------------\n`;
             
             cart.forEach((item, index) => {
@@ -681,10 +616,10 @@
             const shippingCost = Number(document.getElementById('shippingCost').value) || 0;
             const itemsTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-            message += `*إجمالي سعر البضاعة:* ${itemsTotal} ج.م\n`;
-            message += `*حساب تكلفة الشحن:* ${shippingCost} ج.م\n`;
-            message += `👉 *الحساب النهائي المطلوب دفعه:* ${itemsTotal + shippingCost} ج.م\n\n`;
-            message += `_برجاء مراجعة شيت الأوردر وتجهيزه وتأكيد الشحن يا هندسة!_`;
+            message += `*إجمالي البضاعة:* ${itemsTotal} ج.م\n`;
+            message += `*مصاريف الشحن:* ${shippingCost} ج.م\n`;
+            message += `👉 *الحساب النهائي المطلوب:* ${itemsTotal + shippingCost} ج.م\n\n`;
+            message += `_برجاء مراجعة الطلب وتأكيد الشحن يا هندسة!_`;
 
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
