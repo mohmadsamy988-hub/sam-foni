@@ -1,7 +1,7 @@
 {
-  "name": "متجر سامي الذكي",
-  "short_name": "سامي فون",
-  "description": "تطبيق صيانة وإكسسوارات الموبايل",
+  "name": "سامفون - SAMFONI",
+  "short_name": "SAMFONI",
+  "description": "تطبيق سامفون لقطع الغيار والصيانة",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#121214",
@@ -9,9 +9,10 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/2950/2950647.png",
+      "src": "https://lh3.googleusercontent.com/d/15r7K2L8w7nQnL5N5nL4K6I5Yn8P9T6Y_=w512-h512-n-o",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
