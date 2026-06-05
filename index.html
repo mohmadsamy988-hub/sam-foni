@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر سامي الذكي لقطع الغيار والإكسسوار</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #1a1a1e;
+            --primary-color: #2563eb;
+            --accent-color: #f97316;
+            --text-color: #e4e4e7;
+            --text-muted: #a1a1aa;
+            --border-color: #2d2d34;
+            --success-color: #22c55e;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; padding-bottom: 50px; }
+        header { text-align: center; margin-bottom: 20px; padding: 10px 0; }
+        header h1 { font-size: 24px; color: var(--text-color); }
+        header p { color: var(--text-muted); font-size: 14px; margin-top: 5px; }
+        .tabs-container { display: flex; gap: 10px; margin-bottom: 15px; }
+        .tab-btn { flex: 1; padding: 12px; background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 16px; transition: all 0.2s; text-align: center; }
+        .tab-btn.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+        .controls-container { background-color: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px; }
+        .search-row { display: flex; gap: 10px; margin-bottom: 12px; }
+        .search-bar { flex: 1; padding: 12px; background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-size: 16px; outline: none; }
+        .refresh-btn { background-color: #27272a; color: var(--text-color); border: 1px solid var(--border-color); padding: 0 15px; border-radius: 8px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+        .filters { display: flex; gap: 10px; }
+        .filters select { flex: 1; padding: 10px; background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-size: 14px; cursor: pointer; }
+        .parts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .part-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; border-bottom: 3px solid var(--border-color); }
+        .part-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .brand-badge { background-color: var(--primary-color); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        .quality-badge { background-color: #27272a; color: var(--text-muted); padding: 2px 8px; border-radius: 4px; font-size: 12px; border: 1px solid var(--border-color); }
+        .part-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; color: #fff; }
+        .part-model { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
+        .part-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 12px; }
+        .part-price { font-size: 20px; font-weight: 700; color: var(--accent-color); }
+        .order-btn { background-color: var(--success-color); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
+        .loading { text-align: center; color: var(--text-muted); padding: 30px; font-size: 16px; font-weight: 600; }
+    </style>
+</head>
+<body>
 
+    <header>
+        <h1>متجر سامي الذكي لقطع الغيار والإكسسوار 📱</h1>
+        <p>كل ما يحتاجه فني الصيانة في مكان واحد</p>
+    </header>
+
+    <div class="tabs-container">
+        <div class="tab-btn active" id="tabInternal" onclick="switchTab('internal')">⚙️ قطع غيار (داخلي)</div>
+        <div class="tab-btn" id="tabExternal" onclick="switchTab('external')">🎒 إكسسوارات (خارجي)</div>
+    </div>
+
+    <div class="controls-container">
+        <div class="search-row">
+            <input type="text" id="searchInp" class="search-bar" placeholder="ابحث برقم الموديل أو اسم القطعة...">
+            <button class="refresh-btn" id="refreshBtn" title="تحديث البيانات">🔄</button>
+        </div>
+        <div class="filters">
+            <select id="brandFilter">
+                <option value="">كل الشركات</option>
+                <option value="Apple">Apple</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Xiaomi">Xiaomi</option>
+            </select>
+            <select id="qualityFilter">
+                <option value="">كل الجودات</option>
+                <option value="أصلي خلع">أصلي خلع</option>
+                <option value="أصلي توكيل">أصلي توكيل</option>
+                <option value="هاي كوبي">هاي كوبي</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="loading" class="loading">⏳ جاري تحميل الأسعار... إذا طوّلت الشاشة، اضغط زر التحديث 🔄 فوق.</div>
+    <div id="partsGrid" class="parts-grid"></div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbwoSVwewTUTT14T7Lc8qSRKuU7sDwrNceUCxwkdnURd2Ow2Tze6KVEAOwNT5S7bKwM-aA/exec"; 
+        const phone = "201012364554"; 
+        let allProducts = [];
+        let currentTab = 'internal';
+
+        async function fetchParts() {
+            const loadingDiv = document.getElementById('loading');
+            loadingDiv.style.display = 'block';
+            loadingDiv.innerText = "⏳ جاري الاتصال بالمخزن...";
+            try {
+                const response = await fetch(`${API_URL}?nocache=${new Date().getTime()}`);
+                allProducts = await response.json();
+                loadingDiv.style.display = 'none';
+                filterAndRender();
+            } catch (error) {
+                loadingDiv.innerText = "⚠️ معلق اتصال. اضغط زر 🔄 لتنشيط السيرفر وعرض المنتجات.";
+                console.error(error);
+            }
+        }
+
+        function switchTab(tabName) {
+            currentTab = tabName;
+            document.getElementById('tabInternal').classList.toggle('active', tabName === 'internal');
+            document.getElementById('tabExternal').classList.toggle('active', tabName === 'external');
+            filterAndRender();
+        }
+
+        function filterAndRender() {
+            if(!allProducts || allProducts.length === 0) {
+                document.getElementById('partsGrid').innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 40px; background: var(--card-bg); border-radius:12px;">📭 اضغط زر التحديث 🔄 لجلب المنتجات من الشيت.</div>`;
+                return;
+            }
+            const searchVal = document.getElementById('searchInp').value.toLowerCase();
+            const brandVal = document.getElementById('brandFilter').value;
+            const qualityVal = document.getElementById('qualityFilter').value;
+
+            const filtered = allProducts.filter(item => {
+                const name = String(item.Part_Name || '').toLowerCase();
+                const model = String(item.Model || '').toLowerCase();
+                const brand = String(item.Brand || '');
+                const quality = String(item.Quality || '');
+
+                const isExternalItem = name.includes('جراب') || name.includes('اسكرين') || name.includes('شاحن') || quality.includes('جراب') || quality.includes('اسكرين');
+                if (currentTab === 'internal' && isExternalItem) return false;
+                if (currentTab === 'external' && !isExternalItem) return false;
+
+                return (name.includes(searchVal) || model.includes(searchVal)) && (brandVal === "" || brand.toLowerCase() === brandVal.toLowerCase()) && (qualityVal === "" || quality === qualityVal);
+            });
+            renderProducts(filtered);
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('partsGrid');
+            grid.innerHTML = '';
+            if(products.length === 0) {
+                grid.innerHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); padding: 20px;">لا توجد عناصر في هذا القسم.</div>`;
+                return;
+            }
+            products.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'part-card';
+                card.innerHTML = `<div><div class="part-header"><span class="brand-badge">${item.Brand || 'عام'}</span><span class="quality-badge">${item.Quality || 'ممتاز'}</span></div><div class="part-title">${item.Part_Name || ''}</div><div class="part-model">${item.Model || ''}</div></div><div class="part-footer"><div class="part-price">${item.Price_Total || 0} ج.م</div><button class="order-btn" onclick="orderPart('${item.Part_Name}', '${item.Model}', '${item.Price_Total}')">🟢 اطلب الآن</button></div>`;
+                grid.appendChild(card);
+            });
+        }
+
+        document.getElementById('searchInp').addEventListener('input', filterAndRender);
+        document.getElementById('brandFilter').addEventListener('change', filterAndRender);
+        document.getElementById('qualityFilter').addEventListener('change', filterAndRender);
+        document.getElementById('refreshBtn').addEventListener('click', fetchParts);
+        fetchParts();
+    </script>
+</body>
+</html>
